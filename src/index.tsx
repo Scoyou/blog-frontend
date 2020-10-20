@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+import { Auth0Provider } from './contexts/auth0-context';
+import { BrowserRouter } from 'react-router-dom';
 
 Sentry.init({
   dsn: "https://31a7269121a444b3a3327f96884a692e@o451084.ingest.sentry.io/5474129",
@@ -18,9 +20,11 @@ Sentry.init({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Auth0Provider>
+      <BrowserRouter>
+          <App />
+      </BrowserRouter>
+  </Auth0Provider>,
   document.getElementById('root')
 );
 
